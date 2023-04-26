@@ -1,7 +1,7 @@
 let score = 0
 let best = 0
-let rows = 4
-let columns = 4
+const rows = 4
+const columns = 4
 let winShown = false
 let board
 
@@ -10,6 +10,7 @@ window.onload = function() {
   setGame()
 }
 
+const gameBoard = document.getElementById('board')
 
 function setGame() {
   board = [
@@ -25,7 +26,7 @@ function setGame() {
       tile.id = r.toString() + '-' + c.toString()
       let num = board[r][c];
       updateTile(tile, num);
-      document.getElementById('board').appendChild(tile)
+      gameBoard.appendChild(tile)
     }
   }
   setTwo()
@@ -102,23 +103,31 @@ function updateTile (tile, num) {
   }
   win()
 }
-
+const scoreNum = document.getElementById('score-num')
 document.addEventListener('keyup', (e) => {
   if (messageContainer.style.display === 'none') {
     e.preventDefault();
-    if (e.code == 'ArrowLeft') {
-      slideLeft()
-    } else if (e.code == 'ArrowRight') {
-      slideRight()
-    } else if (e.code == 'ArrowUp') {
-      slideUp()
-    } else if (e.code == 'ArrowDown') {
-      slideDown()
+    switch (e.code) {
+      case 'ArrowLeft':
+        slideLeft();
+        break;
+      case 'ArrowRight':
+        slideRight();
+        break;
+      case 'ArrowUp':
+        slideUp();
+        break;
+      case 'ArrowDown':
+        slideDown();
+        break;
+      default:
+        break;
     }
-    document.getElementById('score-num').innerText = score
+    scoreNum.innerText = score
     setTwo()
   }
 })
+
 
 
 function filterZero (row) {
@@ -133,6 +142,8 @@ function slide(row) {
       row[i] *= 2
       row[i+1] = 0
       score += row[i]
+      
+      
     }
   }
 
@@ -222,7 +233,7 @@ function setNewGame() {
   }
   setTwo()
   setTwo()
-  document.getElementById('score-num').innerText = score
+  scoreNum.innerText = score
   winShown = false
   deleteMessage()
 }
@@ -253,7 +264,7 @@ function win() {
 
 function deleteMessage() {
   messageContainer. style.display = 'none'
-  messageContainer.innerHTML = ''
+  messageContainer.innerText = ''
 }
 
 function lose() {
@@ -262,3 +273,21 @@ function lose() {
     `<p>Game over!</p>
     <button onclick ="setNewGame()">Try again!</button>`
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const modeToggle = document.getElementById("mode-toggle");
+
+  modeToggle.addEventListener("click", function() {
+    const body = document.body;
+
+    if (body.classList.contains("light-mode")) {
+      body.classList.remove("light-mode");
+      body.classList.add("dark-mode");
+      modeToggle.innerText = "Light mode";
+    } else {
+      body.classList.remove("dark-mode");
+      body.classList.add("light-mode");
+      modeToggle.innerText = "Dark mode";
+    }
+  });
+});

@@ -12,23 +12,35 @@ button {
 }
 
 body {
-  background-color: bisque;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f5f5f5; /* háttérszín módosítása */
+  color: #776e65; /* betűszín módosítása */
   overflow: hidden;
 }
 
-button:active {
-  animation: flash 0.2s;
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
 }
 
-@keyframes flash {
-  from { border-color: inherit; }
-  to { border-color: #fff; }
+body.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+#mode-toggle {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  font-size: 1.1em;
+  margin: 10px;
 }
 
 
 #text-container p {
   margin: 1rem;
 }
+
 #screen-container, #text-container {
   display: flex;
   flex-direction: row;
@@ -39,11 +51,11 @@ button:active {
   background-color: rgb(32, 181, 218);
   color: rgb(255, 255, 255);
   padding: 0.5rem;
-  margin: 2rem .5rem;
+  margin: 1rem .5rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 5px;
   width: 5rem;
-  height: 5rem;
+  height: 4rem;
   text-align: center;
   font-size: 1.2rem;
 }
@@ -74,8 +86,9 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c1ad9d;
   font-size: 2rem;
+  background-color: #cac0b4;
+  transition: all 0.3s ease; 
 }
 
 
@@ -120,6 +133,7 @@ color: #fff;
 background-color: #9400d3;
 color: #fff;
 }
+
 .x2048 {
 background-color: #4b0082;
 color: #fff;
