@@ -3,6 +3,7 @@ let score = 0
 let best = 0
 let rows = 4
 let columns = 4
+let winShown = false;
 
 window.onload = function() {
   setGame()
@@ -41,24 +42,49 @@ function hasEmptyTile(){
   return false
 }
 
-function setTwo() {
-  if (!hasEmptyTile()) {
-    return
-  }
-  let found = false
-  while (!found) {
-    let r = Math.floor(Math.random() * rows)
-    let c = Math.floor(Math.random() * columns)
-
-    if (board [r][c] == 0) {
-      board[r][c] = 2
-      let tile = document.getElementById(r.toString() + '-' + c.toString())
-      tile.innerText = '2'
-      tile.classList.add('x2')
-      found = true
+function hasPossibleMoves() {
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < columns; c++) {
+      if (board[r][c] === 0) {
+        return true;
+      }
+      if (c < columns - 1 && board[r][c] === board[r][c + 1]) {
+        return true;
+      }
+      if (r < rows - 1 && board[r][c] === board[r + 1][c]) {
+        return true;
+      }
     }
   }
+  return false;
 }
+
+function setTwo() {
+  if (!hasEmptyTile()) {
+    return;
+  }
+
+  let found = false;
+  while (!found) {
+    let r = Math.floor(Math.random() * rows);
+    let c = Math.floor(Math.random() * columns);
+
+    if (board[r][c] == 0) {
+      board[r][c] = 2;
+      let tile = document.getElementById(r.toString() + '-' + c.toString());
+      tile.innerText = '2';
+      tile.classList.add('x2');
+      found = true;
+    }
+  }
+
+  if (!hasPossibleMoves()) {
+    lose();
+  }
+}
+
+
+
 
 
 function updateTile (tile, num) {
@@ -73,71 +99,25 @@ function updateTile (tile, num) {
      tile.classList.add ('x8192')
     }
   }
+  win()
 }
 
-// Az érintőképernyős események feliratkozása
-document.addEventListener('touchstart', handleTouchStart, false)
-document.addEventListener('touchmove', handleTouchMove, false)
-
-// A billentyűzet események feliratkozása
-document.addEventListener('keyup', handleKeyUp, false)
-
-// A felhasználó első érintése
-var xDown = null
-var yDown = null
-
-// Az érintés kezelése
-function handleTouchStart(evt) {
-  xDown = evt.touches[0].clientX
-  yDown = evt.touches[0].clientY
-}
-
-// Az ujj húzásának kezelése
-function handleTouchMove(evt) {
-  if (!xDown || !yDown) {
-    return
-  }
-
-  var xUp = evt.touches[0].clientX
-  var yUp = evt.touches[0].clientY
-
-  var xDiff = xDown - xUp
-  var yDiff = yDown - yUp
-
-  // Ellenőrizzük, hogy melyik irányba mozgott az ujj
-  if (Math.abs(xDiff) > Math.abs(yDiff)) {
-    if (xDiff > 0) {
+document.addEventListener('keyup', (e) => {
+  if (messageContainer.style.display === 'none') {
+    e.preventDefault();
+    if (e.code == 'ArrowLeft') {
       slideLeft()
-    } else {
+    } else if (e.code == 'ArrowRight') {
       slideRight()
-    }
-  } else {
-    if (yDiff > 0) {
+    } else if (e.code == 'ArrowUp') {
       slideUp()
-    } else {
+    } else if (e.code == 'ArrowDown') {
       slideDown()
     }
+    document.getElementById('score-num').innerText = score
+    setTwo()
   }
-
-  // Az érintés utáni visszaállítás
-  xDown = null
-  yDown = null
-};
-
-// A billentyűzet események kezelése
-function handleKeyUp(evt) {
-  if (evt.code == 'ArrowLeft') {
-    slideLeft()
-  } else if (evt.code == 'ArrowRight') {
-    slideRight()
-  } else if (evt.code == 'ArrowUp') {
-    slideUp()
-  } else if (evt.code == 'ArrowDown') {
-    slideDown()
-  }
-  document.getElementById('score-num').innerText = score
-  setTwo()
-}
+})
 
 
 function filterZero (row) {
@@ -242,6 +222,8 @@ function setNewGame() {
   setTwo()
   setTwo()
   document.getElementById('score-num').innerText = score
+  winShown = false
+  deleteMessage()
 }
 
 function bestScore () {
@@ -249,4 +231,33 @@ function bestScore () {
     best = score
     document.getElementById('best-num').innerText = best
   } 
+}
+
+const messageContainer = document.getElementById('message')
+messageContainer.style.display = 'none'
+
+function win() {
+  if (board.flat().includes(2048) && !winShown) {
+    messageContainer.style.display = 'block';
+    messageContainer.innerHTML = 
+    '<p>Congratulations! You win! Continue playing?</p>\
+    <div id= buttons >\
+      <button onclick ="deleteMessage()" >Yes!</button>\
+      <button onclick ="setNewGame()" >No</button>\
+    </div>';
+    winShown = true;
+  }
+}
+
+
+function deleteMessage() {
+  messageContainer. style.display = 'none'
+  messageContainer.innerHTML = ''
+}
+
+function lose() {
+    messageContainer.style.display = 'flex';
+    messageContainer.innerHTML = 
+    `<p>Sorry! You lost!</p>
+    <button onclick ="setNewGame()">Try again!</button>`
 }

@@ -6,11 +6,24 @@ p {
   margin: .2rem;
 }
 
+button {
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 body {
   background-color: bisque;
-  overflow: hidden;
-
 }
+
+button:active {
+  animation: flash 0.2s;
+}
+
+@keyframes flash {
+  from { border-color: inherit; }
+  to { border-color: #fff; }
+}
+
 
 #text-container p {
   margin: 1rem;
@@ -22,7 +35,7 @@ body {
   align-items: center;
 }
 #score-container, #best-container, button {
-  background-color: goldenrod;
+  background-color: rgb(32, 181, 218);
   color: rgb(255, 255, 255);
   padding: 0.5rem;
   margin: 2rem .5rem;
@@ -118,6 +131,39 @@ color: #fff;
 background-color: #8b0000;
 color: #fff;
 }
+#message {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(248, 196, 6, 0.687);
+  margin: auto;
+  width: 90vw;
+  height: 45vw;
+  max-width: 500px;
+  max-height: 250px;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* or any higher number than the z-index of other elements */
+}
+
+#buttons {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#message p,
+#message button {
+  margin: 30px;
+  color: white;
+  font-size: 1.5rem;
+}
+
 
 footer {
   margin: 3rem;
