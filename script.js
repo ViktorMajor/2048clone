@@ -1,9 +1,10 @@
-let board
 let score = 0
 let best = 0
 let rows = 4
 let columns = 4
-let winShown = false;
+let winShown = false
+let board
+
 
 window.onload = function() {
   setGame()
@@ -64,22 +65,22 @@ function setTwo() {
     return;
   }
 
-  let found = false;
+  let found = false
   while (!found) {
-    let r = Math.floor(Math.random() * rows);
-    let c = Math.floor(Math.random() * columns);
+    let r = Math.floor(Math.random() * rows)
+    let c = Math.floor(Math.random() * columns)
 
     if (board[r][c] == 0) {
-      board[r][c] = 2;
-      let tile = document.getElementById(r.toString() + '-' + c.toString());
-      tile.innerText = '2';
-      tile.classList.add('x2');
-      found = true;
+      board[r][c] = 2
+      let tile = document.getElementById(r.toString() + '-' + c.toString())
+      tile.innerText = '2'
+      tile.classList.add('x2')
+      found = true
     }
   }
 
   if (!hasPossibleMoves()) {
-    lose();
+    lose()
   }
 }
 
@@ -238,13 +239,13 @@ messageContainer.style.display = 'none'
 
 function win() {
   if (board.flat().includes(2048) && !winShown) {
-    messageContainer.style.display = 'block';
+    messageContainer.style.display = 'block'
     messageContainer.innerHTML = 
-    '<p>Congratulations! You win! Continue playing?</p>\
-    <div id= buttons >\
-      <button onclick ="deleteMessage()" >Yes!</button>\
-      <button onclick ="setNewGame()" >No</button>\
-    </div>';
+   ` <p>Congratulations! You win! Continue playing?</p>
+    <div id= buttons >
+      <button onclick ="deleteMessage()" >Yes!</button>
+      <button onclick ="setNewGame()" >No</button>
+    </div>`
     winShown = true;
   }
 }
@@ -258,6 +259,6 @@ function deleteMessage() {
 function lose() {
     messageContainer.style.display = 'flex';
     messageContainer.innerHTML = 
-    `<p>Sorry! You lost!</p>
+    `<p>Game over!</p>
     <button onclick ="setNewGame()">Try again!</button>`
 }
