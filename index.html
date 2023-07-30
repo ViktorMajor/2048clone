@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="pictures/x-icon" href="icon.ico">
+
   <title>2048</title>
 </head>
 <body>
@@ -12,18 +14,18 @@
     <div id="text-container">
       <h1>2048</h1>
       <p>Play 2048 Game Online <br> Join the numbers and get to the 2048 tile!</p>
-      <button id="mode-toggle">Dark mode</button>
+      <button id="mode-toggle">Light mode</button>
     </div>
     <div id="screen-container">
-      <div id="score-container">
+      <div id="score-container" class="bbada0">
         <p>Score</p>
         <p id="score-num">0</p>
       </div>
-      <div id="best-container">
+      <div id="best-container" class="bbada0">
         <p>Best</p>
         <p id="best-num">0</p>
       </div>
-      <button onclick="setNewGame()" >New game</button>
+      <button class="new" onclick="setNewGame()" >New game</button>
     </div>
   </header>
   <main>

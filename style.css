@@ -3,8 +3,13 @@
 }
 
 p {
-  margin: .2rem;
+  margin: 0.2rem;
 }
+h1 {
+  font-size: 80px;
+}
+.new {
+background: #8f7a66;;}
 
 button {
   border: 1px solid black;
@@ -12,15 +17,15 @@ button {
 }
 
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: #f5f5f5; /* háttérszín módosítása */
   color: #776e65; /* betűszín módosítása */
-  overflow: hidden;
+
 }
 
 body.light-mode {
   background-color: #ffffff;
-  color: #000000;
+  color: #776e65;;
 }
 
 body.dark-mode {
@@ -35,23 +40,29 @@ body.dark-mode {
   font-size: 1.1em;
   margin: 10px;
 }
-
-
+#text-container {
+  width: 500px;
+  margin: auto;
+}
 #text-container p {
   margin: 1rem;
+  
 }
 
-#screen-container, #text-container {
+#screen-container,
+#text-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-#score-container, #best-container, button {
-  background-color: rgb(32, 181, 218);
+#score-container,
+#best-container,
+button {
+  background-color: #bbada0;
   color: rgb(255, 255, 255);
   padding: 0.5rem;
-  margin: 1rem .5rem;
+  margin: 1rem 0.5rem;
   border: none;
   border-radius: 5px;
   width: 5rem;
@@ -59,8 +70,6 @@ body.dark-mode {
   text-align: center;
   font-size: 1.2rem;
 }
-
-
 
 #board {
   max-width: 500px;
@@ -80,7 +89,7 @@ body.dark-mode {
 }
 
 .tile {
-  border-radius: 2px;
+  border-radius: 3px;
   width: 95%;
   height: 95%;
   display: flex;
@@ -88,63 +97,61 @@ body.dark-mode {
   align-items: center;
   font-size: 2rem;
   background-color: #cac0b4;
-  transition: all 0.3s ease; 
+  transition: all 0.3s ease;
 }
-
-
 
 .x2 {
-background-color: #f5deb3;
-color: #666;
+  background-color: #f5deb3;
+  color: #666;
 }
 .x4 {
-background-color: #f0e68c;
-color: #666;
+  background-color: #f0e68c;
+  color: #666;
 }
 .x8 {
-background-color: #d3d3d3;
-color: #fff;
+  background-color: #d3d3d3;
+  color: #fff;
 }
 .x16 {
-background-color: #87cefa;
-color: #fff;
+  background-color: #87cefa;
+  color: #fff;
 }
 .x32 {
-background-color: #00bfff;
-color: #fff;
+  background-color: #00bfff;
+  color: #fff;
 }
 .x64 {
-background-color: #1e90ff;
-color: #fff;
+  background-color: #1e90ff;
+  color: #fff;
 }
 .x128 {
-background-color: #ff69b4;
-color: #fff;
+  background-color: #ff69b4;
+  color: #fff;
 }
 .x256 {
-background-color: #ff1493;
-color: #fff;
+  background-color: #ff1493;
+  color: #fff;
 }
 .x512 {
-background-color: #ff00ff;
-color: #fff;
+  background-color: #ff00ff;
+  color: #fff;
 }
 .x1024 {
-background-color: #9400d3;
-color: #fff;
+  background-color: #9400d3;
+  color: #fff;
 }
 
 .x2048 {
-background-color: #4b0082;
-color: #fff;
+  background-color: #4b0082;
+  color: #fff;
 }
 .x4096 {
-background-color: #800000;
-color: #fff;
+  background-color: #800000;
+  color: #fff;
 }
 .x8192 {
-background-color: #8b0000;
-color: #fff;
+  background-color: #8b0000;
+  color: #fff;
 }
 #message {
   flex-direction: column;
@@ -177,7 +184,6 @@ color: #fff;
   color: white;
   font-size: 1.5rem;
 }
-
 
 footer {
   margin: 3rem;
