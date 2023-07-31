@@ -18,8 +18,8 @@ button {
 
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #f5f5f5; /* háttérszín módosítása */
-  color: #776e65; /* betűszín módosítása */
+  background-color: #f5f5f5; 
+  color: #776e65; 
 
 }
 
@@ -168,7 +168,7 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999; /* or any higher number than the z-index of other elements */
+  z-index: 9999; 
 }
 
 #buttons {
